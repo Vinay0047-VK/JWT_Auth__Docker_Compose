@@ -8,25 +8,36 @@ GitHub Connected to local system - Jun 10 2026
 - pipenv
 
 Commands
-> pipenv shell 
+> pipenv shell
+
 to create virtual environment
 
 > pipenv install djangorestframework-simplejwt
+
 > pipenv install djangorestframework
+
 > pipenv install psycopg2-binary
+
 > pipenv install python-decouple
 
 > django-admin startproject config .
+
 to create __config__ folder
 
+
 > python manage.py runserver
+
 to run server
 
 > python manage.py startapp users
+
 app folder __users__
 
+
 > python manage.py startapp tasks
+
 app folder __tasks__
+
 
 Added __users__ , __tasks__ to INSTALLED_APPS in `config/settings.py`
 
