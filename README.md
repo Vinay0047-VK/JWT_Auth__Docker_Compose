@@ -1,6 +1,6 @@
 # JWT_Auth__Docker_Compose
 
-**Jun 10 2026**
+# **Jun 10 2026**
 
 GitHub Connected to local system - Jun 10 2026
 
@@ -44,3 +44,17 @@ In __config__/settings.py
 Configuring Environment variables
 
 Added __gitignore__ 
+
+
+# **Jun 11 2026**
+
+Created vite App
+
+> npm create vite@latest . -- --template react
+
+Created Folders
+- __api__
+- __context__
+- __hooks__
+- __pages__
+- __components__
