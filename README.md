@@ -53,8 +53,26 @@ Created vite App
 > npm create vite@latest . -- --template react
 
 Created Folders
-- __api__
-- __context__
-- __hooks__
-- __pages__
-- __components__
+- __api__/
+    axiosInstance.js
+    auth.js
+    tasks.js
+
+- __context__/
+    AuthContext.jsx
+
+- __hooks__/
+    useAuth.js
+    useTasks.js
+
+- __pages__/
+    Login.jsx
+    Register.jsx
+    Dashboard.jsx
+
+- __components__/
+    PrivateRoute.jsx
+    Navbar.jsx
+    TaskCard.jsx
+    TaskForm.jsx
+    Spinner.jsx

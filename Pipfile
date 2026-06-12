@@ -5,10 +5,16 @@ name = "pypi"
 
 [packages]
 django = "*"
-djangorestframework = "*"
 djangorestframework-simplejwt = "*"
 psycopg2-binary = "*"
 python-decouple = "*"
+django-cors-headers = "*"
+django-filter = "*"
+gunicorn = "*"
+redis = "*"
+django-redis = "*"
+djangorestframework = "*"
+drf-spectacular = "*"
 
 [dev-packages]
 
