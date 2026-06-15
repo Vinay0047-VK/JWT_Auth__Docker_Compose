@@ -1,3 +1,83 @@
+# from decouple import config
+
+# SECRET_KEY = config('SECRET_KEY', default='dev-secret-change-me')
+# DEBUG = config('DEBUG', default=True, cast=bool)
+# ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='*').split(',')
+
+# INSTALLED_APPS = [
+#     'django.contrib.admin',
+#     'django.contrib.auth',
+#     'django.contrib.contenttypes',
+#     'django.contrib.sessions',
+#     'django.contrib.messages',
+#     'django.contrib.staticfiles',
+#     # third party
+#     'rest_framework',
+#     'rest_framework_simplejwt',
+#     'rest_framework_simplejwt.token_blacklist',
+#     'corsheaders',
+#     'django_filters',
+#     'drf_spectacular',
+#     # local
+#     'users',
+#     'tasks',
+# ]
+
+# MIDDLEWARE = [
+#     'corsheaders.middleware.CorsMiddleware',   # must be first
+#     'django.middleware.security.SecurityMiddleware',
+#     'django.contrib.sessions.middleware.SessionMiddleware',
+#     'django.middleware.common.CommonMiddleware',
+#     'django.middleware.csrf.CsrfViewMiddleware',
+#     'django.contrib.auth.middleware.AuthenticationMiddleware',
+#     'django.contrib.messages.middleware.MessageMiddleware',
+#     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+# ]
+
+# AUTH_USER_MODEL = 'users.User'
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME':     config('DB_NAME', default='taskdb'),
+#         'USER':     config('DB_USER', default='postgres'),
+#         'PASSWORD': config('DB_PASSWORD', default='postgres'),
+#         'HOST':     config('DB_HOST', default='localhost'),
+#         'PORT':     config('DB_PORT', default='5432'),
+#     }
+# }
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': (
+#         'rest_framework_simplejwt.authentication.JWTAuthentication',
+#     ),
+#     'DEFAULT_PERMISSION_CLASSES': (
+#         'rest_framework.permissions.IsAuthenticated',
+#     ),
+#     'DEFAULT_FILTER_BACKENDS': (
+#         'django_filters.rest_framework.DjangoFilterBackend',
+#         'rest_framework.filters.OrderingFilter',
+#     ),
+#     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+#     'PAGE_SIZE': 10,
+#     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+# }
+
+# from datetime import timedelta
+# SIMPLE_JWT = {
+#     'ACCESS_TOKEN_LIFETIME':  timedelta(minutes=15),
+#     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+#     'ROTATE_REFRESH_TOKENS':  True,
+#     'BLACKLIST_AFTER_ROTATION': True,
+# }
+
+# CORS_ALLOWED_ORIGINS = [
+#     'http://localhost:5173',   # Vite dev server
+# ]
+
+# AUTHENTICATION_BACKENDS = [
+#     'django.contrib.auth.backends.ModelBackend',
+# ]
 """
 Django settings for config project.
 
