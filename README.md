@@ -89,3 +89,5 @@ Created Folders
 {Backend Phase-3}
 
 Task App CRUD
+
+Added Docker files in Root and also frontend and backend
