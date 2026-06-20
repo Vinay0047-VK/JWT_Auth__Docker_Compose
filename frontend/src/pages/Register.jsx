@@ -2,6 +2,25 @@ import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { register } from '../api/auth'
 
+import { toast } from 'react-toastify'
+
+const handleSubmit = async (e) => {
+  
+  setLoading(true)
+  try {
+    await register({ name: form.name, email: form.email, password: form.password })
+    toast.success('Account created — please sign in')
+    navigate('/login', { state: { registered: true } })
+  } catch (err) {
+    const data = err.response?.data
+    if (data?.email)    setError(data.email[0])
+    else if (data?.password) setError(data.password[0])
+    else setError('Registration failed. Please try again.')
+  } finally {
+    setLoading(false)
+  }
+}
+
 export default function Register() {
   const navigate        = useNavigate()
   const [form, setForm] = useState({ name: '', email: '', password: '', confirm: '' })

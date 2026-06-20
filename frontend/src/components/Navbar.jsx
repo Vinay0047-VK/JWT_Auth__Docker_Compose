@@ -1,6 +1,14 @@
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 
+import { toast } from 'react-toastify'
+
+const handleLogout = async () => {
+  await logout()
+  toast.info('Signed out')
+  navigate('/login')
+}
+
 export default function Navbar() {
   const { user, logout } = useAuth()
   const navigate         = useNavigate()

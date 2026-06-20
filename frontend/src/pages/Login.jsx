@@ -2,6 +2,24 @@ import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 
+import { toast } from 'react-toastify'
+
+
+const handleSubmit = async (e) => {
+  e.preventDefault()
+  setError('')
+  setLoading(true)
+  try {
+    await login(form.email, form.password)
+    toast.success('Welcome back!')
+    navigate('/')
+  } catch (err) {
+    setError(err.response?.data?.detail || 'Login failed. Check your credentials.')
+  } finally {
+    setLoading(false)
+  }
+}
+
 export default function Login() {
   const { login }       = useAuth()
   const navigate        = useNavigate()

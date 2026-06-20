@@ -21,6 +21,7 @@ import PrivateRoute from './components/PrivateRoute'
 import Login     from './pages/Login'
 import Register  from './pages/Register'
 import Dashboard from './pages/Dashboard'
+import NotFound from './pages/NotFound'
 
 export default function App() {
   return (
@@ -30,7 +31,7 @@ export default function App() {
       <Route path="/" element={
         <PrivateRoute><Dashboard /></PrivateRoute>
       } />
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   )
 }

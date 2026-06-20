@@ -5,6 +5,8 @@ import TaskForm  from '../components/TaskForm'
 import TaskCard  from '../components/TaskCard'
 import Spinner   from '../components/Spinner'
 
+import TaskSkeleton from '../components/TaskSkeleton'
+
 export default function Dashboard() {
   const { tasks, loading, error, fetchTasks, addTask, editTask, removeTask } = useTasks()
   const [filter, setFilter] = useState('')
@@ -40,21 +42,19 @@ export default function Dashboard() {
           {error && <p style={styles.error}>{error}</p>}
 
           {loading ? (
-            <Spinner />
-          ) : tasks.length === 0 ? (
-            <div style={styles.empty}>
-              <p>No tasks yet. Create your first one above.</p>
-            </div>
-          ) : (
-            tasks.map((task) => (
-              <TaskCard
-                key={task.id}
-                task={task}
-                onEdit={editTask}
-                onDelete={removeTask}
-              />
-            ))
-          )}
+  <TaskSkeleton />
+) : tasks.length === 0 ? (
+  <div style={styles.empty}>
+  <p style={{ fontSize: '1rem', marginBottom: '0.25rem' }}>No tasks yet</p>
+  <p style={{ fontSize: '0.875rem', color: '#9ca3af' }}>
+    Create your first task using the form above
+  </p>
+</div>
+) : (
+  tasks.map((task) => (
+    <TaskCard key={task.id} task={task} onEdit={editTask} onDelete={removeTask} />
+  ))
+)}
 
         </div>
       </main>

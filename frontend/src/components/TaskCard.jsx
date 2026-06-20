@@ -26,9 +26,16 @@ export default function TaskCard({ task, onEdit, onDelete }) {
     }
   }
 
+  const [deleting, setDeleting] = useState(false)
+
   const handleDelete = async () => {
     if (!window.confirm('Delete this task?')) return
-    await onDelete(task.id)
+    setDeleting(true)
+    try {
+      await onDelete(task.id)
+    } finally {
+      setDeleting(false)
+    }
   }
 
   if (editing) {
@@ -81,7 +88,9 @@ export default function TaskCard({ task, onEdit, onDelete }) {
       )}
       <div style={styles.actions}>
         <button style={styles.editBtn} onClick={() => setEditing(true)}>Edit</button>
-        <button style={styles.deleteBtn} onClick={handleDelete}>Delete</button>
+        <button style={styles.deleteBtn} onClick={handleDelete} disabled={deleting}>
+  {deleting ? 'Deleting...' : 'Delete'}
+</button>
       </div>
     </div>
   )

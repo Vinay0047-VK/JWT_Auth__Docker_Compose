@@ -5,7 +5,7 @@ import Spinner from './Spinner'
 export default function PrivateRoute({ children }) {
   const { user, loading } = useAuth()
 
-  if (loading) return <Spinner />
+  if (loading) return <Spinner fullPage/>
   if (!user)   return <Navigate to="/login" replace />
   return children
 }
