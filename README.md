@@ -81,12 +81,12 @@ Created Folders
 
 # **Jun 15 2026**
 
-{Frontend Phase-2}
+__Frontend Phase-2__
 ---
 
 # **Jun 20 2026**
 
-{Backend Phase-3}
+__Backend Phase-3__
 
 Task App CRUD
 
