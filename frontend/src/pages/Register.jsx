@@ -45,7 +45,7 @@ export default function Register() {
 
     setLoading(true)
     try {
-      await register({ name: form.name, email: form.email, password: form.password })
+      await register({ u_name: form.name, email: form.email, password: form.password })
       navigate('/login', { state: { registered: true } })
     } catch (err) {
       const data = err.response?.data
