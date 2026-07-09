@@ -18,89 +18,90 @@ User = get_user_model()
 
 
 class RegisterView(CreateAPIView):
-    queryset           = User.objects.all()
-    serializer_class   = RegisterSerializer
+    queryset = User.objects.all()
+    serializer_class = RegisterSerializer
     permission_classes = [AllowAny]
 
 
 @extend_schema(
     request={
-        'application/json': {
-            'type': 'object',
-            'properties': {
-                'email':    {'type': 'string', 'example': 'user@example.com'},
-                'password': {'type': 'string', 'example': 'password123'},
+        "application/json": {
+            "type": "object",
+            "properties": {
+                "email": {"type": "string", "example": "user@example.com"},
+                "password": {"type": "string", "example": "password123"},
             },
-            'required': ['email', 'password'],
+            "required": ["email", "password"],
         }
     },
     responses={
         200: {
-            'type': 'object',
-            'properties': {
-                'access':  {'type': 'string'},
-                'refresh': {'type': 'string'},
-                'user':    {'type': 'object'},
-            }
+            "type": "object",
+            "properties": {
+                "access": {"type": "string"},
+                "refresh": {"type": "string"},
+                "user": {"type": "object"},
+            },
         },
-        401: {'description': 'Invalid credentials'},
-    }
+        401: {"description": "Invalid credentials"},
+    },
 )
 class LoginView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
-        email    = request.data.get('email', '').strip().lower()
-        password = request.data.get('password', '')
+        email = request.data.get("email", "").strip().lower()
+        password = request.data.get("password", "")
 
         if not email or not password:
             return Response(
-                {'detail': 'Email and password are required.'},
-                status=status.HTTP_400_BAD_REQUEST
+                {"detail": "Email and password are required."},
+                status=status.HTTP_400_BAD_REQUEST,
             )
 
         user = authenticate(request, username=email, password=password)
 
         if not user:
             return Response(
-                {'detail': 'Invalid credentials.'},
-                status=status.HTTP_401_UNAUTHORIZED
+                {"detail": "Invalid credentials."}, status=status.HTTP_401_UNAUTHORIZED
             )
 
         refresh = RefreshToken.for_user(user)
 
-        return Response({
-            'access':  str(refresh.access_token),
-            'refresh': str(refresh),
-            'user':    UserSerializer(user).data,
-        })
+        return Response(
+            {
+                "access": str(refresh.access_token),
+                "refresh": str(refresh),
+                "user": UserSerializer(user).data,
+            }
+        )
 
 
 @extend_schema(
     request={
-        'application/json': {
-            'type': 'object',
-            'properties': {
-                'refresh': {'type': 'string'},
+        "application/json": {
+            "type": "object",
+            "properties": {
+                "refresh": {"type": "string"},
             },
-            'required': ['refresh'],
+            "required": ["refresh"],
         }
     },
     responses={
-        200: {'description': 'Successfully logged out'},
-        400: {'description': 'Token invalid or missing'},
-    }
+        200: {"description": "Successfully logged out"},
+        400: {"description": "Token invalid or missing"},
+    },
 )
 class LogoutView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request):
-        refresh_token = request.data.get('refresh')
+        refresh_token = request.data.get("refresh")
 
         if not refresh_token:
             return Response(
-                {'detail': 'Refresh token is required.'},
-                status=status.HTTP_400_BAD_REQUEST
+                {"detail": "Refresh token is required."},
+                status=status.HTTP_400_BAD_REQUEST,
             )
 
         try:
@@ -108,15 +109,15 @@ class LogoutView(APIView):
             token.blacklist()
         except TokenError:
             return Response(
-                {'detail': 'Token is invalid or already blacklisted.'},
-                status=status.HTTP_400_BAD_REQUEST
+                {"detail": "Token is invalid or already blacklisted."},
+                status=status.HTTP_400_BAD_REQUEST,
             )
 
-        return Response({'detail': 'Successfully logged out.'})
+        return Response({"detail": "Successfully logged out."})
 
 
 class MeView(RetrieveAPIView):
-    serializer_class   = UserSerializer
+    serializer_class = UserSerializer
     permission_classes = [IsAuthenticated]
 
     def get_object(self):

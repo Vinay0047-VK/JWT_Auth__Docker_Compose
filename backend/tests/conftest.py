@@ -12,8 +12,9 @@ def api_client():
 
 @pytest.fixture
 def create_user():
-    def make_user(email='test@example.com', password='testpass123', u_name='Test User'):
+    def make_user(email="test@example.com", password="testpass123", u_name="Test User"):
         return User.objects.create_user(email=email, password=password, u_name=u_name)
+
     return make_user
 
 
@@ -22,25 +23,35 @@ def auth_client(create_user):
     # creates its OWN APIClient — does not share with api_client fixture
     user = create_user()
     client = APIClient()
-    response = client.post('/api/auth/login/', {
-        'email': 'test@example.com',
-        'password': 'testpass123',
-    }, format='json')
-    token = response.data['access']
-    client.credentials(HTTP_AUTHORIZATION=f'Bearer {token}')
+    response = client.post(
+        "/api/auth/login/",
+        {
+            "email": "test@example.com",
+            "password": "testpass123",
+        },
+        format="json",
+    )
+    token = response.data["access"]
+    client.credentials(HTTP_AUTHORIZATION=f"Bearer {token}")
     client.user = user
     return client
 
 
 @pytest.fixture
 def second_auth_client(create_user):
-    user = create_user(email='other@example.com', password='otherpass123', u_name='Other User')
+    user = create_user(
+        email="other@example.com", password="otherpass123", u_name="Other User"
+    )
     client = APIClient()
-    response = client.post('/api/auth/login/', {
-        'email': 'other@example.com',
-        'password': 'otherpass123',
-    }, format='json')
-    token = response.data['access']
-    client.credentials(HTTP_AUTHORIZATION=f'Bearer {token}')
+    response = client.post(
+        "/api/auth/login/",
+        {
+            "email": "other@example.com",
+            "password": "otherpass123",
+        },
+        format="json",
+    )
+    token = response.data["access"]
+    client.credentials(HTTP_AUTHORIZATION=f"Bearer {token}")
     client.user = user
     return client

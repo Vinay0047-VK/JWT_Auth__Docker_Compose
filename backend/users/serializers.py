@@ -3,16 +3,17 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+
 class RegisterSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, min_length=8)
 
     class Meta:
-        model  = User
-        fields = ['id', 'email', 'u_name', 'password']
+        model = User
+        fields = ["id", "email", "u_name", "password"]
 
     def validate_email(self, value):
         if User.objects.filter(email=value).exists():
-            raise serializers.ValidationError('A user with this email already exists.')
+            raise serializers.ValidationError("A user with this email already exists.")
         return value
 
     def create(self, validated_data):
@@ -21,6 +22,6 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model  = User
-        fields = ['id', 'email', 'u_name', 'created_at']
+        model = User
+        fields = ["id", "email", "u_name", "created_at"]
         read_only_fields = fields

@@ -28,11 +28,11 @@ from .filters import TaskFilter
 
 
 class TaskViewSet(viewsets.ModelViewSet):
-    serializer_class       = TaskSerializer
-    permission_classes     = [permissions.IsAuthenticated]
-    authentication_classes = [JWTAuthentication]      
-    filterset_class        = TaskFilter
-    ordering_fields        = ['created_at', 'updated_at', 'title']
+    serializer_class = TaskSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = [JWTAuthentication]
+    filterset_class = TaskFilter
+    ordering_fields = ["created_at", "updated_at", "title"]
 
     def get_queryset(self):
         if not self.request.user or not self.request.user.is_authenticated:
